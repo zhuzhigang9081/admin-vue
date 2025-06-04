@@ -1,8 +1,9 @@
 <template>
     <div>
       <div class="zhangsan text-3xl font-bold underline  w-20 h-20 bg-red-600 !text-gray-500">nihao </div>
+      <div></div>
     </div>
-    <el-table-v2 :columns="columns" :data="data" :width="700" :height="400" fixed />
+    <!-- <el-table-v2 :columns="columns" :data="data" :width="700" :height="400" fixed /> -->
   </template>
   
   

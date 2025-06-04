@@ -1,27 +1,27 @@
 import request from "@/utils/http/index";
-import { type LoginVo } from "../typs/login.vo";
-export const login = (data: LoginVo) => {
+import { type LoginVo } from "../types/login.vo";
+import { type ResponsePromise } from "../types/response";
+export const login = (data: LoginVo): ResponsePromise => {
     return request({
-        url: "/user/login",
+        url: "/api/user/login",
         data,
         isToken: false,
         method: "post",
     });
 };
 
-export const getCaptcha = () => {
+export const getCaptcha = (): ResponsePromise => {
     return request({
-        url: "/user/captcha",
+        url: "/api/user/captcha",
         method: "get",
         isToken: false,
     });
 };
-export const register = (data: LoginVo) => {
+export const register = (data: LoginVo): ResponsePromise => {
     return request({
-        url: "/user/register",
+        url: "/api/user/register",
         data,
         method: "post",
         isToken: false,
     });
 }
-

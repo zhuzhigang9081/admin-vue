@@ -19,7 +19,7 @@ const closeLoading = () => {
 
 const service: AxiosInstance = axios.create({
   method: "get",
-  baseURL: import.meta.env.VITE_APP_API,
+  // baseURL: import.meta.env.VITE_APP_API,
   headers: {
     "Content-Type": "application/json;charset=utf-8",
   },
