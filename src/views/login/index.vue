@@ -64,11 +64,11 @@ import { getCaptcha, login } from '@/api/login'
 import { ElMessage } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
-import type { LoginVo } from '@/types/login.vo'
+import type { LoginDto } from '@/api/login/types/login.dto'
 
 const router = useRouter()
 
-const loginForm = reactive<LoginVo>({
+const loginForm = reactive<LoginDto>({
     username: '',
     password: '',
     captcha: '',
@@ -126,7 +126,7 @@ const handelLogin = async () => {
 
 const isRemember = ref(false)
 //记住密码
-const rememberPassword = (loginForm: LoginVo) => {
+const rememberPassword = (loginForm: LoginDto) => {
     localStorage.setItem('accent', JSON.stringify(loginForm))
 }
 //获取记住的账号密码

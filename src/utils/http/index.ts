@@ -4,6 +4,7 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from "axios";
 import { ElMessage, ElLoading } from "element-plus";
+import router from "@/router";
 
 
 const loadingInstance = ElLoading.service;
@@ -19,7 +20,7 @@ const closeLoading = () => {
 
 const service: AxiosInstance = axios.create({
   method: "get",
-  // baseURL: import.meta.env.VITE_APP_API,
+  baseURL: import.meta.env.VITE_APP_API,
   headers: {
     "Content-Type": "application/json;charset=utf-8",
   },
@@ -55,9 +56,8 @@ service.interceptors.request.use(
     }
 
     const { loading = true, isToken = true } = config;
-
     if (loading) showLoading();
-    if (localStorage.getItem("token") && !isToken) {
+    if (localStorage.getItem("token") && isToken) {
       config.headers["Authorization"] =
         "Bearer " + localStorage.getItem("token"); // 让每个请求携带自定义token 请根据实际情况自行修改
     }
@@ -81,28 +81,32 @@ service.interceptors.response.use(
         message: data.describe,
         type: "error",
       });
-      if (data.code === 401) {
-        //登录状态已过期.处理路由重定向
-        console.log("loginOut");
-      }
       throw new Error(data.describe);
     }
     return data;
   },
   (error) => {
     closeLoading();
-    let { message } = error;
+    let { message, status } = error;
     if (message == "Network Error") {
       message = "后端接口连接异常";
     } else if (message.includes("timeout")) {
       message = "系统接口请求超时";
     } else if (message.includes("Request failed with status code")) {
-      message = "系统接口" + message.substr(message.length - 3) + "异常";
+      //Request failed with status code 404
+      message = "系统接口" + message.substring(message.length - 3) + "异常";
     }
-    ElMessage({
-      message: message,
-      type: "error",
-    });
+    //登录过期重定向
+    if (status === 403) {
+      router.push("/login");
+      localStorage.removeItem("token");
+    } else {
+      ElMessage({
+        message: message,
+        type: "error",
+      });
+    }
+
     return Promise.reject(error);
   }
 );
