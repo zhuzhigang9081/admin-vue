@@ -1,7 +1,9 @@
 export type AppStoreState = {
     menuList: MenuList[]
     isCollapse: boolean
-    permissions: string[]
+    permissions: string[],
+    breadcrumbs: Breadcrumb[],
+    navTags: NavTag[]
 }
 
 export type MenuList = {
@@ -17,7 +19,19 @@ export type MenuList = {
     children?: MenuList[]
     meta?: {
         title?: string
-        catch?: number
-        hidden?: boolean
+        cache?: number
+        hidden?: boolean    
+        name?: string
+        status?: boolean
     }
+}
+export type Breadcrumb = {
+    name: string
+    path?: string
+}
+
+export type NavTag = {
+    name: string
+    path: string,
+    fullPath?: string
 }

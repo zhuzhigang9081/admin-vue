@@ -1,18 +1,31 @@
-import { defineStore } from 'pinia'
-import { getInfo } from '@/api/menu'
-import { AppStoreState } from './types'
+import { defineStore } from "pinia";
+import { getInfo } from "@/api/menu";
+import { type AppStoreState, type NavTag } from "./types";
 
-export default defineStore('appStore', {
-    state: (): AppStoreState => ({
-        menuList: [],
-        permissions: [],
-        isCollapse: false,
-    }),
-    actions: {
-        async getInfo() {
-            const { data } = await getInfo({})
-            this.menuList = data.menuList
-            this.permissions = data.permissions
+export default defineStore("appStore", {
+  state: (): AppStoreState => ({
+    menuList: [],
+    permissions: [],
+    isCollapse: false,
+    breadcrumbs: [],
+    navTags: [],
+  }),
+  actions: {
+    async getInfo() {
+      const { data } = await getInfo({});
+      this.menuList = data.menuList;
+      this.permissions = data.permissions;
+    },
+    addTags(tag: NavTag) {
+      const isRepeat = this.navTags.find((item) => item.name === tag.name);
+      const isRedirect = tag.path.includes("/redirect");
+      if (!isRepeat && !isRedirect) {
+          this.navTags.push({
+              name: tag.name,
+              path: tag.path,
+              fullPath: tag.fullPath,
+            });
         }
-    }
-})
+    },
+  },
+});

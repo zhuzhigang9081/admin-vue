@@ -32,6 +32,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue')
 
   },
+  //用于刷新页面
+  {
+    path: '/redirect/:path(.*)',
+    name: 'Redirect',
+    component: () => import(/* webpackChunkName: "redirect" */ '@/views/redirect/index.vue')
+  },
   {
     path: "/:pathMatch(.*)*",
     component: () => import("@/views//error/404.vue")

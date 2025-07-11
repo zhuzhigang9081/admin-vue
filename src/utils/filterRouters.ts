@@ -4,7 +4,6 @@
  *  '../views/Home/index.vue': () => import('../views/Home/index.vue'),
  * }
 */
-//! debugger一下 看一下 运行过程
 const modules = import.meta.glob('../views/**/*.vue')
 
 export const filterRoute = (data: any) => {
