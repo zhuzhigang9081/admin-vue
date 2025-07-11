@@ -19,11 +19,16 @@ export const useHandleRouter = (router: Router) => {
       appStore.$patch({
         breadcrumbs: filterBreadcrumb(to.path, appStore.menuList),
       });
+      //处理tag标签
       appStore.addTags({
         name: to.meta.title as string,
         path: to.path,
         fullPath: to.fullPath,
       });
+      //处理缓存页面
+      if (to.meta?.cache) {
+        appStore.addCacheView(to.meta?.name as string);
+      }
       next();
       return;
     }

@@ -4,6 +4,7 @@ export type AppStoreState = {
     permissions: string[],
     breadcrumbs: Breadcrumb[],
     navTags: NavTag[]
+    cacheViews: string[]
 }
 
 export type MenuList = {

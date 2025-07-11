@@ -9,6 +9,7 @@ export default defineStore("appStore", {
     isCollapse: false,
     breadcrumbs: [],
     navTags: [],
+    cacheViews: [],
   }),
   actions: {
     async getInfo() {
@@ -20,12 +21,18 @@ export default defineStore("appStore", {
       const isRepeat = this.navTags.find((item) => item.name === tag.name);
       const isRedirect = tag.path.includes("/redirect");
       if (!isRepeat && !isRedirect) {
-          this.navTags.push({
-              name: tag.name,
-              path: tag.path,
-              fullPath: tag.fullPath,
-            });
-        }
+        this.navTags.push({
+          name: tag.name,
+          path: tag.path,
+          fullPath: tag.fullPath,
+        });
+      }
+    },
+    //添加缓存路由
+    addCacheView(view: string) {
+      if (!this.cacheViews.includes(view)) {
+        this.cacheViews.push(view);
+      }
     },
   },
 });
