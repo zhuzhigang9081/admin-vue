@@ -13,14 +13,14 @@
                 <div class="right w-[55%] h-full px-[20px] pl-[100px] flex flex-col justify-center ">
                     <h1 class="font-bold text-[18px] mb-[20px]">密码登录</h1>
                     <div>
-                        <el-form :model="loginForm" :rules="loginRules" ref="formRef">
+                        <el-form :model="loginForm" :rules="loginRules" ref="formRef" @submit.prevent>
                             <el-form-item prop='username'>
                                 <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
                                 <el-input v-model="loginForm.password" placeholder="请输入密码"></el-input>
                             </el-form-item>
-                            <el-form-item class="mb-[20px] flex" prop="captche">
+                            <el-form-item class="mb-[20px] flex" prop="captcha">
                                 <el-input v-model="loginForm.captcha" placeholder="验证码"
                                     class="pr-[10px] flex-2"></el-input>
                                 <div class="flex-1" @click="handerGetCaptcha" v-html="codeUrl"></div>
