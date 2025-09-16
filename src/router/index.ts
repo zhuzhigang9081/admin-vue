@@ -14,16 +14,16 @@ const routes: RouteRecordRaw[] = [
         name: "Home",
         meta: { title: "首页" },
       },
-      // {
-      //   path: "/system/user",
-      //   component: () => import("@/views/system/user/index.vue"),
-      //   meta: { title: "首页" },
-      // },
-      // {
-      //   path: "/system/menu",
-      //   component: () => import("@/views/system/menu/index.vue"),
-      //   meta: { title: "首页" },
-      // },
+      {
+        path: "/system/user",
+        component: () => import("@/views/system/user/index.vue"),
+        meta: { title: "首页" },
+      },
+      {
+        path: "/system/menu",
+        component: () => import("@/views/system/menu/index.vue"),
+        meta: { title: "首页" },
+      },
     ],
   },
   {
@@ -62,5 +62,5 @@ const router = createRouter({
     }
   },
 })
-useHandleRouter(router)
+// useHandleRouter(router)
 export default router;

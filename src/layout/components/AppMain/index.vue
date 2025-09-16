@@ -1,7 +1,7 @@
 <template>
   <div class="app_main">
     <router-view v-slot="{ Component, route }">
-        {{ appStore.cacheViews }}
+        <!-- {{ appStore.cacheViews }} -->
       <Transition name="fade" mode="out-in">
         <keep-alive :include="appStore.cacheViews">
           <component :is="Component" :key="route.path" />
