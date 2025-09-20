@@ -15,7 +15,7 @@ export type MenuList = {
     component: string
     icon: string
     order_num: number
-    status: boolean
+    status: number
     menu_type: 1 | 2 | 3
     children?: MenuList[]
     meta?: {

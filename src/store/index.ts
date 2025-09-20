@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getInfo } from "@/api/menu";
+import { getInfoApi } from "@/api/menu";
 import { type AppStoreState, type NavTag } from "./types";
 
 export default defineStore("appStore", {
@@ -13,7 +13,7 @@ export default defineStore("appStore", {
   }),
   actions: {
     async getInfo() {
-      const { data } = await getInfo({});
+      const { data } = await getInfoApi();
       this.menuList = data.menuList;
       this.permissions = data.permissions;
     },

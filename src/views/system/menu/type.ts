@@ -1,5 +1,5 @@
 export interface queryForm {
-    title: string
+    title?: string
     status?: number | string
 }
 // type status = number | string

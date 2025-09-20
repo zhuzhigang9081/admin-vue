@@ -62,5 +62,5 @@ const router = createRouter({
     }
   },
 })
-// useHandleRouter(router)
+useHandleRouter(router)
 export default router;
